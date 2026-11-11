@@ -1,13 +1,19 @@
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config();
+import "@nomicfoundation/hardhat-toolbox";
+import * as dotenv from "dotenv";
 
-module.exports = {
+dotenv.config();
+
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
+
+/** @type import('hardhat/config').HardhatUserConfig */
+export default {
   solidity: "0.8.20",
   networks: {
     elysium: {
       url: "https://rpc.elysiumchain.tech",
       chainId: 1339,
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
-    }
-  }
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
+    },
+  },
 };
+
